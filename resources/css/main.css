@@ -46,16 +46,6 @@ h2 {
     text-align: center;
 }
 
-/* ========================*/
-/* IFRAME */
-/* ========================*/
-
-.parent {
-    text-align: center;
-    margin-top: 5rem;
-    justify-content: center;
-}
-
 
 /* ========================*/
 /* SLIDER */
@@ -63,7 +53,6 @@ h2 {
 
 
 .slider-container {
-    display: flex;
     margin-left: 5rem;
 }
 
@@ -103,8 +92,6 @@ h2 {
     cursor: pointer;
 }
 
-
-
 /* ========================*/
 /* BUTTON */
 /* ========================*/
@@ -132,4 +119,17 @@ button:active {
     background-color: #3e8e41;
     box-shadow: 0 5px #666;
     transform: translateY(4px);
+}
+
+/* ========================*/
+/* CHART */
+/* ========================*/
+
+.chart-container{
+   text-align: center;
+   width:100%;
+}
+
+.sim-container{
+    display:flex;
 }
