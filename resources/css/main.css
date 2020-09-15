@@ -42,7 +42,7 @@ body {
 /* ========================*/
 
 h2 {
-    margin-top: 5em;
+    margin-top: 1em;
     text-align: center;
 }
 
@@ -98,25 +98,25 @@ h2 {
 
 button { 
     display: inline-block;
-    padding: 15px 25px;
-    font-size: 24px;
+    padding: 10px 20px;
+    font-size: 16px;
     cursor: pointer;
     text-align: center;
     text-decoration: none;
     outline: none;
     color: #fff;
-    background-color: #4CAF50;
+    background-color: #3a993d;
     border: none;
-    border-radius: 15px;
-    box-shadow: 0 9px #999;
+    border-radius: 10px;
+    box-shadow: 0 9px rgb(236, 217, 217);
 }
 
 button:hover {
-    background-color: #3e8e41
+    background-color: #0d330e
 }
 
 button:active {
-    background-color: #3e8e41;
+    background-color: #0d330e;
     box-shadow: 0 5px #666;
     transform: translateY(4px);
 }
@@ -130,6 +130,35 @@ button:active {
    width:100%;
 }
 
-.sim-container{
+.base-sim-container{
     display:flex;
+}
+
+.updatedAtNewSim{
+    margin-top: 2rem;
+    border-width: 2px;
+    border-style: dotted;
+    width: 25rem;
+}
+
+.updatedDynamically {
+    position: relative;
+    display:block;
+    text-align: center;
+    margin-top: 5rem;
+}
+
+.col-1-of-2{
+    width:50%;
+    float:left;
+}
+
+.col-2-of-2{
+    width:50%;
+    float:right;
+}
+
+
+.parameter-container p{
+    text-align: center;
 }

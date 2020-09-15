@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Air Polution Simulation</title>
+    <title>Deforestation Simulation</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.js"
         integrity="sha512-QEiC894KVkN9Tsoi6+mKf8HaCLJvyA6QIRzY5KrfINXYuP9NxdIkRQhGq3BZi0J4I7V5SidGM3XUQ5wFiMDuWg=="
         crossorigin="anonymous"></script>
@@ -14,27 +14,55 @@
 </head>
 
 <body>
-    <h2 style="font-size: 40px;"> The whole world encounters the same problem - air pollution! </h2>
-    <div class="sim-container">
+    <h2 style="font-size: 40px;"> See how forest area can change based on certain parameters! </h2>
+    <div class="base-sim-container">
         <div class="chart-container" style="height:60vh; width: 100vh;">
             <canvas id="chart" class="chart">
 
             </canvas>
         </div>
         <div class="slider-container">
-            <div class="radius" style="margin-left: 1rem; margin-top: 2rem;">
-                <h3>Dome radius (km)</h3>
-                <input type="range" min="10" max="1000" value="500" class="slider" id="domeRadius">
-                <p class="sliderValue" id="domeRadiusValue">VALUE: 500 (KM)</p>
+            <div class="updatedAtNewSim">
+                <p>These only get updated at new simulation!</p>
+                <div class="col-1-of-2">
+                    <div class="radius" style="margin-left: 1rem; margin-top: 2rem;">
+                        <h3>Forest radius (km)</h3>
+                        <input type="range" min="10" max="1000" value="500" class="slider" id="forestRadius">
+                        <p class="sliderValue" id="forestRadiusValue">VALUE: 500 (KM)</p>
+                    </div>
+                    <div class="treesPerSquareMeter" style="margin-left: 1rem;">
+                        <h3>Trees per square meter (N)</h3>
+                        <input type="range" min="0" max="150" value="50" class="slider" id="treesPerSquareMeter">
+                        <p class="sliderValue" id="treesPerSquareMeterValue">VALUE: 0.5 (N/M^2)</p>
+                    </div>
+                </div>
+                <div class="col-2-of-2">
+                    <div class="oakChance" style="margin-left: 1rem;margin-top: 2rem;">
+                        <h3>Oak tree (%)</h3>
+                        <input type="range" min="0" max="100" value="50" class="slider" id="oakChance">
+                        <p class="sliderValue"></p>
+                    </div>
+                    <div class="spruceChance" style="margin-left: 1rem;">
+                        <h3>Spruce tree (%)</h3>
+                        <input type="range" min="0" max="100" value="50" class="slider" id="spruceChance">
+                        <p class="sliderValue"></p>
+                    </div>
+                    <div class="birchChance" style="margin-left: 1rem;">
+                        <h3>Birch tree (%)</h3>
+                        <input type="range" min="0" max="100" value="50" class="slider" id="birchChance">
+                        <p class="sliderValue"></p>
+                    </div>
+                </div>
             </div>
-            <div class="treesPerSquareMeter" style="margin-left: 1rem;">
-                <h3>Trees per square meter (N)</h3>
-                <input type="range" min="0" max="150" value="50" class="slider" id="treesPerSquareMeter">
-                <p class="sliderValue" id="treesPerSquareMeterValue">VALUE: 0.5 (N/M^2)</p>
-            </div>
-           
         </div>
-
+    </div>
+    <div class="parameter-container">
+        <p style="border:solid;border-width: 2px;">Change these as you want!</p>
+        <div class="paperPerDay" style="margin-left: 1rem; width: 250px; text-align: center;">
+            <h3>Tons of paper produced (N/DAY)</h3>
+            <input type="range" min="0" max="1000" value="500" class="slider" id="paperPerDay">
+           <p class="sliderValue" id="paperPerDayValue">VALUE: 0 (TONS)</p>
+        </div>
     </div>
     <div class="button-container">
         <button style="margin-top: 3rem; margin-bottom: 20rem;" onclick="newParameters();">NEW PARAMETERS!</button>
@@ -54,8 +82,33 @@
         var radius = 500;
         var treesPerSquareMeter = 0.5;
 
-        var radiusValue = document.getElementById('domeRadiusValue');
-        var radiusSlider = document.getElementById('domeRadius');
+        var birchChance = 50;
+        var oakChance = 50;
+        var spruceChance = 50;
+
+        var paperPerDay = 0;
+
+
+        var birchChanceSlider = document.getElementById('birchChance');
+        birchChanceSlider.oninput = function () {
+            birchChance = this.value;
+            console.log(birchChance);
+        }
+
+        var oakChanceSlider = document.getElementById('oakChance');
+        oakChanceSlider.oninput = function () {
+            oakChance = this.value;
+            console.log(oakChance);
+        }
+
+        var spruceChanceSlider = document.getElementById('spruceChance');
+        spruceChanceSlider.oninput = function () {
+            spruceChance = this.value;
+            console.log(spruceChance);
+        }
+
+        var radiusValue = document.getElementById('forestRadiusValue');
+        var radiusSlider = document.getElementById('forestRadius');
         radiusSlider.oninput = function () {
             radius = this.value;
             radiusValue.innerHTML = "VALUE: " + radius + " (KM)";
@@ -68,17 +121,27 @@
             treesPerSquareMeterValue.innerHTML = "VALUE: " + treesPerSquareMeter + " (N/M^2)";
         }
 
+        var paperPerDayValue = document.getElementById('paperPerDayValue');
+        var paperPerDaySlider = document.getElementById('paperPerDay');
+        paperPerDaySlider.oninput = function () {
+            paperPerDay = this.value;
+            paperPerDayValue.innerHTML = "VALUE: " + paperPerDay + " (TONS)";
+            console.log(paperPerDay);
+        }
+
 
         var i = 1;
         var dayArray = new Array();
 
-        function addOneLabel(){
+        function addOneLabel() {
             console.log(dayArray.length);
-            dayArray[dayArray.length] = 'Day ' + (dayArray.length+1);
+            dayArray[dayArray.length] = 'Day ' + (dayArray.length);
             treeChart.update();
+            addDataToLabels(treeChart);
         }
 
-        function addDataToLabels(chart, area, birch, oak, spruce) {
+        function addDataToLabels(chart) {
+            noNegativesCheck();
             chart.data.datasets[0].data.push(birch); // Birch Label
             chart.data.datasets[1].data.push(oak); // Oak Label
             chart.data.datasets[2].data.push(spruce); // Spruce Label
@@ -86,7 +149,7 @@
         }
 
         var treeChart = new Chart(ctx, {
-            type: 'bar',
+            type: 'line',
             data: {
                 labels: dayArray,
                 datasets: [{
@@ -94,33 +157,33 @@
                         data: [
 
                         ],
-                        backgroundColor: 'green',
+                        backgroundColor: 'darkwhite',
                         borderradius: 1,
                         borderColor: '#777',
                         hoverBorderradius: 3,
-                        hoverBorderColor: '#0000'
+                        hoverBorderColor: '#ffffff'
                     },
                     {
                         label: 'Oak',
                         data: [
 
                         ],
-                        backgroundColor: 'red',
+                        backgroundColor: '#654321',
                         borderradius: 1,
                         borderColor: '#777',
                         hoverBorderradius: 3,
-                        hoverBorderColor: '#0000'
+                        hoverBorderColor: '#ffffff'
                     },
                     {
                         label: 'Spruce',
                         data: [
 
                         ],
-                        backgroundColor: 'gray',
+                        backgroundColor: 'darkgreen',
                         borderradius: 1,
                         borderColor: '#777',
                         hoverBorderradius: 3,
-                        hoverBorderColor: '#0000'
+                        hoverBorderColor: '#ffffff'
                     }
 
                 ]
@@ -160,12 +223,15 @@
         var oak = 0;
         var spruce = 0;
 
-
         function newParameters() {
-           while(dayArray.length > 0){
-               dayArray.pop();
-           }
-           treeChart.update();
+            while (dayArray.length > 0) {
+                treeChart.data.datasets[0].data.pop();
+                treeChart.data.datasets[1].data.pop();
+                treeChart.data.datasets[2].data.pop();
+                dayArray.pop();
+            }
+            treeChart.datasets
+            treeChart.update();
 
             area = Math.round(Math.PI * Math.pow(radius, 2));
             console.log("Area: " + area);
@@ -173,15 +239,59 @@
             trees = Math.round(area * treesPerSquareMeter);
             console.log("Trees: " + trees);
 
+
+            let maxChance = parseInt(oakChance) + parseInt(birchChance) + parseInt(spruceChance);
+            console.log(maxChance);
+            if (maxChance == 0) {
+                maxChance = 1;
+            }
+
+            oak = Math.floor((oakChance / maxChance) * trees);
+            birch = Math.floor((birchChance / maxChance) * trees);
+            spruce = Math.floor((spruceChance / maxChance) * trees);
+            trees = oak + birch + spruce;
+
+            console.log(oak);
+            console.log(birch);
+            console.log(spruce);
+            console.log("Now trees: " + trees);
+
+            simulateADay();
+
         }
 
-        function simulateADay(){
-            if (area == 0 || trees == 0){
+        function paperCalculation(){
+            let cutDownTrees = paperPerDay * 24;
+
+            birch = birch - (cutDownTrees / 2);
+            spruce = spruce - (cutDownTrees / 2);
+
+        }
+
+        function noNegativesCheck(){
+            if (birch < 0){
+                birch = 0;
+            }
+            if (oak < 0){
+                oak = 0;
+            }
+            if (spruce < 0){
+                spruce = 0;
+            }
+        }
+
+        function simulateADay() {
+            if (area == 0 || trees == 0) {
                 newParameters();
+            }
+            if(dayArray.length > 0){
+            paperCalculation();
             }
             addOneLabel();
         }
 
+
+        // https://www.quora.com/How-many-trees-are-cut-down-a-day-for-paper for paper - I'm gonna use 50% of spruce and 50% of birch for each ton of paper.
     </script>
 </body>
 
