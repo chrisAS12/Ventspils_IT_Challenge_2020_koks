@@ -3,10 +3,11 @@ var treesPerSquareMeter = 0.5;
 
 var birchPercentage = 50;
 var pineTreePrecentage = 50;
-var spruceChance = 50;
+var sprucePercentage = 50;
 
 var paperPerDay = 0;
 
+var startStopButton = document.getElementById('startStopButton');
 
 var birchPercentageSlider = document.getElementById('birchPercentage');
 birchPercentageSlider.oninput = function () {
@@ -20,10 +21,10 @@ pineTreePrecentageSlider.oninput = function () {
     console.log(pineTreePrecentage);
 }
 
-var spruceChanceSlider = document.getElementById('spruceChance');
-spruceChanceSlider.oninput = function () {
-    spruceChance = this.value;
-    console.log(spruceChance);
+var sprucePercentageSlider = document.getElementById('sprucePercentage');
+sprucePercentageSlider.oninput = function () {
+    sprucePercentage = this.value;
+    console.log(sprucePercentage);
 }
 
 var radiusValue = document.getElementById('forestRadiusValue');
@@ -47,3 +48,41 @@ paperPerDaySlider.oninput = function () {
     paperPerDayValue.innerHTML = "VALUE: " + paperPerDay + " (TONS)";
     console.log(paperPerDay);
 }
+
+var fixedSliderArray = [birchPercentageSlider, pineTreePrecentageSlider,
+    sprucePercentageSlider, radiusSlider, treesPerSquareMeterSlider ];
+
+function disableFixedSliders(stateOfSliders){
+   for(var b = 0; b < fixedSliderArray.length; b++){
+       fixedSliderArray[b].disabled = stateOfSliders;
+       if(stateOfSliders){
+        fixedSliderArray[b].style.backgroundColor = 'black';
+       }
+       else{
+        fixedSliderArray[b].style.backgroundColor = 'white';
+       }
+   }
+}
+
+function buttonTextToStop(){
+    startStopButton.innerHTML = "STOP SIMULATION";
+}
+function buttonTextToStart(){
+    startStopButton.innerHTML = "START SIMULATION";
+}
+
+
+let oldFixedVariables = [];
+function matchOldFixedValuesWithNewOnes(){
+    let currentFixedVariables =  [birchPercentage, pineTreePrecentage, sprucePercentage,
+        radius, treesPerSquareMeter];
+    for(var b = 0; b < currentFixedVariables.length; b++){
+        if(!(oldFixedVariables[b] == currentFixedVariables[b])){
+            oldFixedVariables = Array.from(currentFixedVariables);
+            return true;
+        }
+    }
+    return false;
+    
+}
+

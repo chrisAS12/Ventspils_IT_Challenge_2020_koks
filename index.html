@@ -44,9 +44,9 @@
                         <input type="range" min="0" max="100" value="50" class="slider" id="pineTreePrecentage">
                         <p class="sliderValue"></p>
                     </div>
-                    <div class="spruceChance" style="margin-left: 1rem;">
+                    <div class="sprucePercentage" style="margin-left: 1rem;">
                         <h3>Spruce tree (%)</h3>
-                        <input type="range" min="0" max="100" value="50" class="slider" id="spruceChance">
+                        <input type="range" min="0" max="100" value="50" class="slider" id="sprucePercentage">
                         <p class="sliderValue"></p>
                     </div>
                     <div class="birchPercentage" style="margin-left: 1rem;">
@@ -67,8 +67,7 @@
         </div>
     </div>
     <div class="button-container">
-        <button style="margin-top: 3rem; margin-bottom: 20rem;" onclick="newParameters();">NEW PARAMETERS!</button>
-        <button style="margin-top: 3rem; margin-bottom: 20rem;" onclick="simulateADay();">SIMULATE A DAY!</button>
+        <button style="margin-top: 3rem; margin-bottom: 20rem;" id="startStopButton" onclick="startSimulation();">START SIMULATION!</button>
     </div>
 </body>
 
