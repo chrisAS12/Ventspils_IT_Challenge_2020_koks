@@ -136,7 +136,7 @@ function newParameters() {
     area = Math.round(Math.PI * Math.pow(radius, 2));
     console.log("Area: " + area);
 
-    trees = Math.round(area * treesPerSquareMeter);
+    trees = Math.round((area * treesPerSquareMeter)/0.000001);
     console.log("Trees: " + trees);
 
 
@@ -172,6 +172,30 @@ function paperCalculation() {
         pineTree -= howManyTreesToCut[1];
         spruce -= howManyTreesToCut[2];
     }
+    else if(birch > 0 && pineTree > 0){
+        let howManyTreesToCut = chanceDivision(cutDownTrees, 2);
+        birch -= howManyTreesToCut[0];
+        pineTree -= howManyTreesToCut[1];
+    } 
+    else if (birch > 0 && spruce > 0){
+        let howManyTreesToCut = chanceDivision(cutDownTrees, 2);
+        birch -= howManyTreesToCut[0];
+        spruce -= howManyTreesToCut[1];
+    } 
+    else if (spruce > 0 && pineTree > 0){
+        let howManyTreesToCut = chanceDivision(cutDownTrees, 2);
+        spruce -= howManyTreesToCut[0];
+        pineTree -= howManyTreesToCut[1];
+    }
+    else if(spruce > 0){
+        spruce -= cutDownTrees;
+    }
+    else if(birch > 0){
+        birch -= cutDownTrees;
+    }
+    else if(pineTree > 0){
+        pineTree -= cutDownTrees;
+    }
 
 }
  // Doesn't allow values to go into negatives, if something goes wrong.
@@ -191,7 +215,7 @@ function noNegativesCheck() {
 }
 
 // CAN ADD A SLIDER WHICH CORRECTS HOW FAST THE SIMULATIONS SIMULATES!
-var simulationInterval = setInterval(simulateADay, 500);
+var simulationInterval = setInterval(simulateADay, 0);
 clearInterval(simulationInterval);
 
 
@@ -203,7 +227,7 @@ function startSimulation(){
         if(matchOldFixedValuesWithNewOnes()){
             newParameters();
         }
-        simulationInterval = setInterval(simulateADay, 500);
+        simulationInterval = setInterval(simulateADay, 50);
     }
     else{
         simulationState = 0;
@@ -239,17 +263,17 @@ function simulateADay() {
 // of simulation.
 
 function chanceDivision(maxNumber, count) {
-    var r = [];
+    var division = [];
     var currentSum = 0;
     for(var i=0; i<count; i++) {
-        r.push(Math.random());
-        currentSum += r[i];
+        division.push(Math.random());
+        currentSum += division[i];
     }
-    for(var i=0; i<r.length; i++) {
-        r[i] = Math.round(r[i] / currentSum * maxNumber);
+    for(var i=0; i<division.length; i++) {
+        division[i] = Math.round(division[i] / currentSum * maxNumber);
     }
-    return r;
+    return division;
 }
 
 
-// https://www.quora.com/How-many-trees-are-cut-down-a-day-for-paper for paper - I'm gonna use 50% of spruce and 50% of birch for each ton of paper.
+// http://www.conservatree.org/learn/EnviroIssues/TreeStats.shtml#:~:text=He%20calculated%20that%2C%20based%20on,chemical%20(freesheet)%20pulping%20process
