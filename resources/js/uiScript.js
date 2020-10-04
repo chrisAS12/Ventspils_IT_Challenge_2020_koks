@@ -1,4 +1,4 @@
-var radius = 500;
+var radius = 20;
 var treesPerSquareMeter = 0.5;
 
 var birchPercentage = 50;
@@ -41,6 +41,7 @@ treesPerSquareMeterSlider.oninput = function () {
     treesPerSquareMeterValue.innerHTML = "VALUE: " + treesPerSquareMeter + " (N/M^2)";
 }
 
+/*
 var paperPerDayValue = document.getElementById('paperPerDayValue');
 var paperPerDaySlider = document.getElementById('paperPerDay');
 paperPerDaySlider.oninput = function () {
@@ -48,6 +49,7 @@ paperPerDaySlider.oninput = function () {
     paperPerDayValue.innerHTML = "VALUE: " + paperPerDay + " (TONS)";
     console.log(paperPerDay);
 }
+*/
 
 var fixedSliderArray = [birchPercentageSlider, pineTreePrecentageSlider,
     sprucePercentageSlider, radiusSlider, treesPerSquareMeterSlider ];

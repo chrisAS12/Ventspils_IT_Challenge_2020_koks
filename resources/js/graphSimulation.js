@@ -136,7 +136,7 @@ function newParameters() {
     area = Math.round(Math.PI * Math.pow(radius, 2));
     console.log("Area: " + area);
 
-    trees = Math.round((area * treesPerSquareMeter)/0.000001);
+    trees = Math.round((area * treesPerSquareMeter) * 100000);
     console.log("Trees: " + trees);
 
 
@@ -164,8 +164,8 @@ function newParameters() {
 
 // Trees are usually made from birch, spruce and pine tree, so I'll use them all.
 function paperCalculation() {
-    let cutDownTrees = paperPerDay * 24;
-
+    let cutDownTrees = Math.floor((Math.random() * (maxPaperPerDay-minPaperPerDay) + minPaperPerDay)) * 24;
+    console.log(cutDownTrees);
     if(birch > 0 && pineTree > 0 && spruce > 0){
         let howManyTreesToCut = chanceDivision(cutDownTrees, 3);
         birch -= howManyTreesToCut[0];
