@@ -41,16 +41,6 @@ treesPerSquareMeterSlider.oninput = function () {
     treesPerSquareMeterValue.innerHTML = "VALUE: " + treesPerSquareMeter + " (N/M^2)";
 }
 
-/*
-var paperPerDayValue = document.getElementById('paperPerDayValue');
-var paperPerDaySlider = document.getElementById('paperPerDay');
-paperPerDaySlider.oninput = function () {
-    paperPerDay = this.value;
-    paperPerDayValue.innerHTML = "VALUE: " + paperPerDay + " (TONS)";
-    console.log(paperPerDay);
-}
-*/
-
 var fixedSliderArray = [birchPercentageSlider, pineTreePrecentageSlider,
     sprucePercentageSlider, radiusSlider, treesPerSquareMeterSlider ];
 

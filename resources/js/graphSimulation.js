@@ -28,10 +28,10 @@ function calculateTotalNumberOfTrees(){
 function addDataToLabels(chart) {
     noNegativesCheck();
     calculateTotalNumberOfTrees();
-    chart.data.datasets[0].data.push(birch); // Birch label
-    chart.data.datasets[1].data.push(pineTree); // pineTree label
-    chart.data.datasets[2].data.push(spruce); // Spruce label
-    chart.data.datasets[3].data.push(stumps); // Stumps label
+    chart.data.datasets[0].data.push(Math.floor(birch)); // Birch label
+    chart.data.datasets[1].data.push(Math.floor(pineTree)); // pineTree label
+    chart.data.datasets[2].data.push(Math.floor(spruce)); // Spruce label
+    chart.data.datasets[3].data.push(Math.floor(stumps)); // Stumps label
     chart.update();
 }
 
@@ -122,7 +122,7 @@ var pineTree = 0;
 var spruce = 0;
 var stumps = 0;
 
-
+// This function runs only once, at the start of the simulation, so we can get the start parameters.
 function newParameters() {
     while (dayArray.length > 0) {
         treeChart.data.datasets[0].data.pop();
@@ -134,13 +134,11 @@ function newParameters() {
     treeChart.update();
 
     area = Math.round(Math.PI * Math.pow(radius, 2));
-    console.log("Area: " + area);
 
     trees = Math.round((area * treesPerSquareMeter) * 100000);
-    console.log("Trees: " + trees);
 
-
-    let maxPercentage = parseInt(pineTreePrecentage) + parseInt(birchPercentage) + parseInt(sprucePercentage);
+    let maxPercentage = parseInt(pineTreePrecentage) + 
+        parseInt(birchPercentage) + parseInt(sprucePercentage);
     console.log(maxPercentage);
     if (maxPercentage == 0) {
         maxPercentage = 1;
@@ -152,11 +150,6 @@ function newParameters() {
     spruce = Math.floor((sprucePercentage / maxPercentage) * trees);
     calculateTotalNumberOfTrees();
     oldTreeCount = trees;
-    console.log(pineTree);
-    console.log(birch);
-    console.log(spruce);
-    console.log("Now trees: " + trees);
-
     simulateADay();
 
 }
@@ -164,10 +157,16 @@ function newParameters() {
 
 // Trees are usually made from birch, spruce and pine tree, so I'll use them all.
 function paperCalculation() {
-    let cutDownTrees = Math.floor((Math.random() * (maxPaperPerDay-minPaperPerDay) + minPaperPerDay)) * 24;
-    console.log(cutDownTrees);
+    let cutDownTrees = Math.floor((Math.random() *
+         (maxPaperPerDay-minPaperPerDay) + minPaperPerDay)) * 24;
+    removeAllTreeTypes(cutDownTrees);
+}
+
+// This functions lets us evenly remove all trees. 
+function removeAllTreeTypes(cutDownTrees){
     if(birch > 0 && pineTree > 0 && spruce > 0){
         let howManyTreesToCut = chanceDivision(cutDownTrees, 3);
+        console.log(howManyTreesToCut[0] + " " + howManyTreesToCut[1] + " " + howManyTreesToCut[2]);
         birch -= howManyTreesToCut[0];
         pineTree -= howManyTreesToCut[1];
         spruce -= howManyTreesToCut[2];
@@ -196,8 +195,9 @@ function paperCalculation() {
     else if(pineTree > 0){
         pineTree -= cutDownTrees;
     }
-
 }
+
+
  // Doesn't allow values to go into negatives, if something goes wrong.
 function noNegativesCheck() {
     if (birch < 0) {
@@ -214,10 +214,14 @@ function noNegativesCheck() {
     }
 }
 
-// CAN ADD A SLIDER WHICH CORRECTS HOW FAST THE SIMULATIONS SIMULATES!
+// Creates the interval element, which is cleared, so we can use it throughout our
+// application.
+
 var simulationInterval = setInterval(simulateADay, 0);
 clearInterval(simulationInterval);
 
+// Defines how fast our simulation is.
+var simulationSpeed = 50;
 
 function startSimulation(){
     if(simulationState == 0) {
@@ -227,7 +231,7 @@ function startSimulation(){
         if(matchOldFixedValuesWithNewOnes()){
             newParameters();
         }
-        simulationInterval = setInterval(simulateADay, 50);
+        simulationInterval = setInterval(simulateADay, simulationSpeed);
     }
     else{
         simulationState = 0;
@@ -237,6 +241,16 @@ function startSimulation(){
     }
 }
 
+// Calculates how many trees to cut down for daily energy usage.
+function energyCalculation(){
+    let energyToday = (Math.random() * 
+        (maxPetajouleEnergyPerDay-minPetajouleEnergyPerDay) + minPetajouleEnergyPerDay);
+    // Divide by 0.0000036 to get MWh
+    energyMWhFormatToday = (energyToday /0.0000036);
+    // Times the trees per 1 MWh
+    treesTodayForEnergy = energyMWhFormatToday * 1.75;
+    removeAllTreeTypes(treesTodayForEnergy);
+}
 
 let oldTreeCount = trees;
 function treesToStumps(){
@@ -254,6 +268,7 @@ function simulateADay() {
     }
     if (dayArray.length > 0) {
         paperCalculation();
+        energyCalculation();
     }
     treesToStumps();
     addOneLabel();

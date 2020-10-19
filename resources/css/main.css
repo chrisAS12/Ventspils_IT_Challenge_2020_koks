@@ -171,6 +171,15 @@ button:active {
 }
 
 
-.parameter-container p{
+.parameter-text{
     text-align: center;
+}
+
+.parameter-container{
+    display: block;
+    position: relative;
+    border: 1px solid #ccc;
+}
+.paperPerDay, .petajouleEnergyPerDay {
+    display: inline-block;
 }
