@@ -122,8 +122,7 @@ var pineTree = 0;
 var spruce = 0;
 var stumps = 0;
 
-// This function runs only once, at the start of the simulation, so we can get the start parameters.
-function newParameters() {
+function clearGraph(){
     while (dayArray.length > 0) {
         treeChart.data.datasets[0].data.pop();
         treeChart.data.datasets[1].data.pop();
@@ -132,6 +131,21 @@ function newParameters() {
         dayArray.pop();
     }
     treeChart.update();
+}
+
+
+function resetSimulation(){
+    simulationState = 1;
+    startStopSimulation();
+    resetButtonState(false);
+    clearGraph();
+}
+
+
+// This function runs only once, at the start of the simulation, so we can get the start parameters.
+function newParameters() {
+  
+    clearGraph();
 
     area = Math.round(Math.PI * Math.pow(radius, 2));
 
@@ -223,7 +237,8 @@ clearInterval(simulationInterval);
 // Defines how fast our simulation is.
 var simulationSpeed = 50;
 
-function startSimulation(){
+// If the simulation state is 1 then simulation is not running.
+function startStopSimulation(){
     if(simulationState == 0) {
         simulationState = 1;
         buttonTextToStop();
@@ -232,14 +247,23 @@ function startSimulation(){
             newParameters();
         }
         simulationInterval = setInterval(simulateADay, simulationSpeed);
+        resetButtonState(true);
     }
     else{
         simulationState = 0;
         buttonTextToStart();
         disableFixedSliders(false);
         clearInterval(simulationInterval);
+        if(stumps > 0){
+            resetButtonState(true);
+        }
+        else{
+            resetButtonState(false);
+        }
     }
 }
+
+
 
 // Calculates how many trees to cut down for daily energy usage.
 function energyCalculation(){

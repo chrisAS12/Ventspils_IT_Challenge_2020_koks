@@ -8,6 +8,7 @@ var sprucePercentage = 50;
 var paperPerDay = 0;
 
 var startStopButton = document.getElementById('startStopButton');
+var resetButton = document.getElementById('resetButton');
 
 var birchPercentageSlider = document.getElementById('birchPercentage');
 birchPercentageSlider.oninput = function () {
@@ -44,6 +45,20 @@ treesPerSquareMeterSlider.oninput = function () {
 var fixedSliderArray = [birchPercentageSlider, pineTreePrecentageSlider,
     sprucePercentageSlider, radiusSlider, treesPerSquareMeterSlider ];
 
+function loadScript(){
+    resetButtonState(false);
+}
+
+// States defines if the button is active or no.
+function resetButtonState(state){
+    if(state == true){
+        resetButton.style.display = 'inline-block';
+    }
+    else{
+        resetButton.style.display = 'none';
+    }
+}
+
 function disableFixedSliders(stateOfSliders){
    for(var b = 0; b < fixedSliderArray.length; b++){
        fixedSliderArray[b].disabled = stateOfSliders;
@@ -57,12 +72,12 @@ function disableFixedSliders(stateOfSliders){
 }
 
 function buttonTextToStop(){
-    startStopButton.innerHTML = "STOP SIMULATION";
-}
-function buttonTextToStart(){
-    startStopButton.innerHTML = "START SIMULATION";
+    startStopButton.innerHTML = "STOP SIMULATION!";
 }
 
+function buttonTextToStart(){
+    startStopButton.innerHTML = "START SIMULATION!";
+}
 
 let oldFixedVariables = [];
 function matchOldFixedValuesWithNewOnes(){

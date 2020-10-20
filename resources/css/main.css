@@ -37,9 +37,11 @@ body {
     clear: both;
 }
 
+
 /* ========================*/
 /* TEXT ELEMENTS */
 /* ========================*/
+
 
 h2 {
     margin-top: 1em;
@@ -52,8 +54,6 @@ h2 {
 /* ========================*/
 
 
-
-
 .slider-container {
     margin-left: 5rem;
 }
@@ -61,8 +61,8 @@ h2 {
 .slider-container,
 .button-container {
     text-align: center;
-
 }
+
 
 .slider {
     -webkit-appearance: none;
@@ -104,9 +104,11 @@ h2 {
     cursor: pointer;
 }
 
+
 /* ========================*/
 /* BUTTON */
 /* ========================*/
+
 
 button { 
     display: inline-block;
@@ -117,7 +119,6 @@ button {
     text-decoration: none;
     outline: none;
     color: #fff;
-    background-color: #3a993d;
     border: none;
     border-radius: 10px;
     box-shadow: 0 9px rgb(236, 217, 217);
@@ -128,9 +129,28 @@ button:hover {
 }
 
 button:active {
-    background-color: #0d330e;
     box-shadow: 0 5px #666;
     transform: translateY(4px);
+}
+
+#startStopButton{
+    background-color: #3a993d;
+}
+
+#startStopButton:active{
+    background-color: #0d330e;
+}
+
+#resetButton {
+    background-color: #a70505;
+}
+
+#resetButton:hover {
+    background-color: #6d0404;
+}
+
+#resetButton:active {
+    background-color: #550202;
 }
 
 /* ========================*/
@@ -151,6 +171,7 @@ button:active {
     border-width: 2px;
     border-style: dotted;
     width: 25rem;
+    position: relative;
 }
 
 .updatedDynamically {

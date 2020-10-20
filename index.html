@@ -19,9 +19,7 @@
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 </head>
 
-<body>
-
-
+<body onload="loadScript();">
     <h2 style="font-size: 40px;"> See how forest area can change based on certain parameters! </h2>
     <div class="base-sim-container">
         <div class="chart-container" style="height:60vh; width: 100vh;">
@@ -78,8 +76,10 @@
         </div>
     </div>
     <div class="button-container">
-        <button style="margin-top: 3rem; margin-bottom: 20rem;" id="startStopButton" onclick="startSimulation();">START
-            SIMULATION!</button>
+        <button style="margin-top: 2rem;" id="startStopButton" onclick="startStopSimulation();">START SIMULATION!</button>
+    </div>
+    <div class="button-container">
+      <button style="margin-top: 1rem;" id="resetButton" onclick="resetSimulation();">RESET!</button>
     </div>
 </body>
 
