@@ -44,7 +44,7 @@ body {
 
 
 h2 {
-    margin-top: 1em;
+    margin-top: 10px;
     text-align: center;
 }
 
@@ -136,6 +136,9 @@ button:active {
 #startStopButton{
     background-color: #3a993d;
 }
+#startStopButton:hover{
+    background-color: #0d330e;
+}
 
 #startStopButton:active{
     background-color: #0d330e;
@@ -150,7 +153,12 @@ button:active {
 }
 
 #resetButton:active {
-    background-color: #550202;
+    background-color: #6d0404;
+}
+
+.red-border{
+    margin: 1rem 0px;
+    border: 1px dotted #a70505;
 }
 
 /* ========================*/
@@ -203,4 +211,7 @@ button:active {
 }
 .paperPerDay, .petajouleEnergyPerDay {
     display: inline-block;
+    margin-left: 1rem;
+    width: 250px;
+    text-align: center;
 }

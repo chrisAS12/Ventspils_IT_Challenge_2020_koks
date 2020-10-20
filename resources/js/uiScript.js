@@ -42,6 +42,7 @@ treesPerSquareMeterSlider.oninput = function () {
     treesPerSquareMeterValue.innerHTML = "VALUE: " + treesPerSquareMeter + " (N/M^2)";
 }
 
+
 var fixedSliderArray = [birchPercentageSlider, pineTreePrecentageSlider,
     sprucePercentageSlider, radiusSlider, treesPerSquareMeterSlider ];
 

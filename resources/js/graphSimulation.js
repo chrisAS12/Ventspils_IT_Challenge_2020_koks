@@ -31,7 +31,7 @@ function addDataToLabels(chart) {
     chart.data.datasets[0].data.push(Math.floor(birch)); // Birch label
     chart.data.datasets[1].data.push(Math.floor(pineTree)); // pineTree label
     chart.data.datasets[2].data.push(Math.floor(spruce)); // Spruce label
-    chart.data.datasets[3].data.push(Math.floor(stumps)); // Stumps label
+ // chart.data.datasets   chart.data.datasets[3].data.push(Math.floor(stumps)); // Stumps label
     chart.update();
 }
 
@@ -139,11 +139,12 @@ function resetSimulation(){
     startStopSimulation();
     resetButtonState(false);
     clearGraph();
+    newParameters(false);
 }
 
 
 // This function runs only once, at the start of the simulation, so we can get the start parameters.
-function newParameters() {
+function newParameters(started) {
   
     clearGraph();
 
@@ -164,7 +165,9 @@ function newParameters() {
     spruce = Math.floor((sprucePercentage / maxPercentage) * trees);
     calculateTotalNumberOfTrees();
     oldTreeCount = trees;
-    simulateADay();
+    if(started == true){
+      simulateADay();
+    }
 
 }
 
@@ -244,7 +247,7 @@ function startStopSimulation(){
         buttonTextToStop();
         disableFixedSliders(true);
         if(matchOldFixedValuesWithNewOnes()){
-            newParameters();
+            newParameters(true);
         }
         simulationInterval = setInterval(simulateADay, simulationSpeed);
         resetButtonState(true);
@@ -288,7 +291,7 @@ function treesToStumps(){
 function simulateADay() {
 
     if (area == 0 && trees == 0) {
-        newParameters();
+        newParameters(true);
     }
     if (dayArray.length > 0) {
         paperCalculation();
