@@ -48,6 +48,10 @@ h2 {
     text-align: center;
 }
 
+h3 {
+    text-align: center;
+}
+
 
 /* ========================*/
 /* SLIDER */
@@ -177,7 +181,6 @@ button:active {
 .updatedAtNewSim{
     margin-top: 2rem;
     border-width: 2px;
-    border-style: dotted;
     width: 25rem;
     position: relative;
 }
@@ -208,8 +211,9 @@ button:active {
     display: block;
     position: relative;
     border: 1px solid #ccc;
+    padding:1rem;
 }
-.paperPerDay, .petajouleEnergyPerDay {
+.paperPerDay, .petajouleEnergyPerDay, .farmHectaresPerDay {
     display: inline-block;
     margin-left: 1rem;
     width: 250px;

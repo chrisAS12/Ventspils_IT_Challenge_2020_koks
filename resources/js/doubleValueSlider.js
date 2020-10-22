@@ -33,6 +33,24 @@ $(function () {
       maxPetajouleEnergyPerDay = ui.values[1] / divideToGetPetajoules;
     }
   });
-  $("#amount-petajouleEnergyPerDay").val($("#slider-range-petajouleEnergyPerDay").slider("values", 0)/1000 +
+  $("#amount-petajouleEnergyPerDay").val($("#slider-range-petajouleEnergyPerDay").slider("values", 0)/divideToGetPetajoules+
     " - " + $("#slider-range-petajouleEnergyPerDay").slider("values", 1)/divideToGetPetajoules + " PETAJOULES");
+});
+
+var minWoodfarmsHectaresPerDay = 20;
+var maxWoodfarmsHectaresPerDay = 30;
+$(function () {
+  $("#slider-range-woodfarmsPerDay").slider({
+    range: true,
+    min: 0,
+    max: 100,
+    values: [20, 30], // Average Latvia's usage daily. It is caluclated to be around 0.17 petajoules.
+    slide: function (event, ui) {
+      $("#amount-woodfarmsPerDay").val(ui.values[0] + " - " + ui.values[1]+ " HECTARES");
+      minWoodfarmsHectaresPerDay = ui.values[0];
+      maxWoodfarmsHectaresPerDay  = ui.values[1];
+    }
+  });
+  $("#amount-woodfarmsPerDay").val($("#slider-range-woodfarmsPerDay").slider("values", 0) +
+    " - " + $("#slider-range-woodfarmsPerDay").slider("values", 1)+ " HECTARES");
 });

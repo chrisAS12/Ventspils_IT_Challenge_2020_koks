@@ -31,7 +31,6 @@ function addDataToLabels(chart) {
     chart.data.datasets[0].data.push(Math.floor(birch)); // Birch label
     chart.data.datasets[1].data.push(Math.floor(pineTree)); // pineTree label
     chart.data.datasets[2].data.push(Math.floor(spruce)); // Spruce label
- // chart.data.datasets   chart.data.datasets[3].data.push(Math.floor(stumps)); // Stumps label
     chart.update();
 }
 
@@ -71,17 +70,6 @@ var treeChart = new Chart(ctx, {
                 borderColor: '#777',
                 hoverBorderradius: 3,
                 hoverBorderColor: '#ffffff'
-            },
-            {
-                label: 'Stumps',
-                data: [
-
-                ],
-                backgroundColor: 'gray',
-                borderradius: 1,
-                borderColor: '#777',
-                hoverBorderradius: 3,
-                hoverBorderColor: '#ffffff'
             }
 
         ]
@@ -89,7 +77,7 @@ var treeChart = new Chart(ctx, {
     options: {
         title: {
             display: true,
-            text: 'Ventspils ITC simulācija',
+            text: 'Trees',
             fontSize: 25,
             fontColor: '#FBEEC1'
         },
@@ -127,7 +115,6 @@ function clearGraph(){
         treeChart.data.datasets[0].data.pop();
         treeChart.data.datasets[1].data.pop();
         treeChart.data.datasets[2].data.pop();
-        treeChart.data.datasets[3].data.pop();
         dayArray.pop();
     }
     treeChart.update();
@@ -152,17 +139,12 @@ function newParameters(started) {
 
     trees = Math.round((area * treesPerSquareMeter) * 100000);
 
-    let maxPercentage = parseInt(pineTreePrecentage) + 
-        parseInt(birchPercentage) + parseInt(sprucePercentage);
-    console.log(maxPercentage);
-    if (maxPercentage == 0) {
-        maxPercentage = 1;
-    }
+    let percentages = getPercentages();
 
     stumps = 0;
-    pineTree = Math.floor((pineTreePrecentage / maxPercentage) * trees);
-    birch = Math.floor((birchPercentage / maxPercentage) * trees);
-    spruce = Math.floor((sprucePercentage / maxPercentage) * trees);
+    pineTree = Math.floor(percentages[0] * trees);
+    birch = Math.floor(percentages[1] * trees);
+    spruce = Math.floor(percentages[2] * trees);
     calculateTotalNumberOfTrees();
     oldTreeCount = trees;
     if(started == true){
@@ -279,6 +261,13 @@ function energyCalculation(){
     removeAllTreeTypes(treesTodayForEnergy);
 }
 
+function woodfarmCalculation(){
+    let woodfarmHectares = (Math.random() * 
+        (maxWoodfarmsHectaresPerDay-minWoodfarmsHectaresPerDay) + minWoodfarmsHectaresPerDay);
+    woodfarmTreesPerDay = (woodfarmHectares * 10000) * treesPerSquareMeter;
+    removeAllTreeTypes(woodfarmTreesPerDay);
+}
+
 let oldTreeCount = trees;
 function treesToStumps(){
     possibleStumps = trees - oldTreeCount;
@@ -296,6 +285,7 @@ function simulateADay() {
     if (dayArray.length > 0) {
         paperCalculation();
         energyCalculation();
+        woodfarmCalculation();
     }
     treesToStumps();
     addOneLabel();
@@ -316,6 +306,3 @@ function chanceDivision(maxNumber, count) {
     }
     return division;
 }
-
-
-// http://www.conservatree.org/learn/EnviroIssues/TreeStats.shtml#:~:text=He%20calculated%20that%2C%20based%20on,chemical%20(freesheet)%20pulping%20process

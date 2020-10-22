@@ -13,19 +13,19 @@ var resetButton = document.getElementById('resetButton');
 var birchPercentageSlider = document.getElementById('birchPercentage');
 birchPercentageSlider.oninput = function () {
     birchPercentage = this.value;
-    console.log(birchPercentage);
+    changeSliderPercentageValue();
 }
 
 var pineTreePrecentageSlider = document.getElementById('pineTreePrecentage');
 pineTreePrecentageSlider.oninput = function () {
     pineTreePrecentage = this.value;
-    console.log(pineTreePrecentage);
+    changeSliderPercentageValue();
 }
 
 var sprucePercentageSlider = document.getElementById('sprucePercentage');
 sprucePercentageSlider.oninput = function () {
     sprucePercentage = this.value;
-    console.log(sprucePercentage);
+    changeSliderPercentageValue();
 }
 
 var radiusValue = document.getElementById('forestRadiusValue');
@@ -42,15 +42,27 @@ treesPerSquareMeterSlider.oninput = function () {
     treesPerSquareMeterValue.innerHTML = "VALUE: " + treesPerSquareMeter + " (N/M^2)";
 }
 
-
 var fixedSliderArray = [birchPercentageSlider, pineTreePrecentageSlider,
     sprucePercentageSlider, radiusSlider, treesPerSquareMeterSlider ];
 
-function loadScript(){
-    resetButtonState(false);
+
+var percentageValue = document.getElementById("percentageValue");
+function changeSliderPercentageValue(){
+    let percentages = getPercentages();
+    percentageValue.innerHTML = "SPRUCE: " + percentageRounding(percentages[2]) + "%" + "<br>" +
+        "PINE: " + percentageRounding(percentages[0]) + "%" + "<br>" + 
+        "BIRCH: " + percentageRounding(percentages[1]) + "%" + "<br>";
 }
 
-// States defines if the button is active or no.
+function percentageRounding(percentage){
+    return (Math.round(percentage * 1000)/10);
+}
+function loadScript(){
+    resetButtonState(false);
+    changeSliderPercentageValue();
+}
+
+// State defines if the button is active
 function resetButtonState(state){
     if(state == true){
         resetButton.style.display = 'inline-block';
@@ -58,6 +70,20 @@ function resetButtonState(state){
     else{
         resetButton.style.display = 'none';
     }
+}
+
+// Returns percentage in such array: [0] - pine tree, [1] - birch, [2] - spruce
+function getPercentages(){
+    let maxPercentage = parseInt(pineTreePrecentage) + 
+    parseInt(birchPercentage) + parseInt(sprucePercentage);
+    if (maxPercentage == 0) {
+        maxPercentage = 1;
+    }
+
+    var percentages = [(pineTreePrecentage / maxPercentage),
+        (birchPercentage / maxPercentage), (sprucePercentage / maxPercentage)];
+    
+    return percentages;
 }
 
 function disableFixedSliders(stateOfSliders){
