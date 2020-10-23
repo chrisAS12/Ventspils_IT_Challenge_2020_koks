@@ -2,220 +2,235 @@
 /* BASIC SETUP */
 /* ========================*/
 
-@import url('https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@200;500;700&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@200;500;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap");
 
 * {
-    margin: 0;
-    padding: 0;
-    -webkit-box-sizing: border-box;
-    box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
 }
 
 html,
 body {
-    scroll-behavior: smooth;
-    background-color: #fff;
-    color: #FBEEC1;
-    font-family: 'Barlow Condensed', sans-serif;
-    font-weight: 300;
-    font-size: 20px;
-    text-rendering: optimizeLegibility;
+  scroll-behavior: smooth;
+  background-color: #fff;
+  color: #fbeec1;
+  font-family: "Barlow Condensed", sans-serif;
+  font-weight: 300;
+  font-size: 20px;
+  text-rendering: optimizeLegibility;
 
-    background-image: linear-gradient(#00000070, rgba(0, 0, 0, 0.699)), url(img/hero_trees.jpg);
-    background-size: cover;
-    background-position: center;
-    height: 100vh;
-    width: auto;
-    background-attachment: fixed;
+  background-image: linear-gradient(#00000070, rgba(0, 0, 0, 0.699)),
+    url(img/hero_trees.jpg);
+  background-size: cover;
+  background-position: center;
+  height: 100vh;
+  width: auto;
+  background-attachment: fixed;
 }
 
 /*CLEARFIX*/
 .group:after {
-    content: "";
-    display: table;
-    clear: both;
+  content: "";
+  display: table;
+  clear: both;
 }
-
 
 /* ========================*/
 /* TEXT ELEMENTS */
 /* ========================*/
 
+a {
+  text-decoration: none;
+  color: #f8e08a;
+}
 
 h2 {
-    margin-top: 10px;
-    text-align: center;
+  margin-top: 5px;
+  text-align: center;
 }
 
 h3 {
-    text-align: center;
+  text-align: center;
 }
-
 
 /* ========================*/
 /* SLIDER */
 /* ========================*/
 
-
 .slider-container {
-    margin-left: 5rem;
+  margin-left: 5rem;
 }
 
 .slider-container,
 .button-container {
-    text-align: center;
+  text-align: center;
 }
-
 
 .slider {
-    -webkit-appearance: none;
-    width: 100%;
-    height: 15px;
-    border-radius: 5px;
-    background: #ffffff;
-    outline: none;
-    opacity: 0.7;
-    -webkit-transition: .2s;
-    transition: opacity .2s;
+  -webkit-appearance: none;
+  width: 100%;
+  height: 15px;
+  border-radius: 5px;
+  background: #ffffff;
+  outline: none;
+  opacity: 0.7;
+  -webkit-transition: 0.2s;
+  transition: opacity 0.2s;
 }
 
-.range-slider-text-format{
-    border:0; 
-    color:#FBEEC1; 
-    text-align: center;
-    background-color: transparent;
+.range-slider-text-format {
+  border: 0;
+  color: #fbeec1;
+  text-align: center;
+  background-color: transparent;
 }
-.range-slider-text-format:focus{
-    border:0;
+.range-slider-text-format:focus {
+  border: 0;
 }
 
 .slider::-webkit-slider-thumb {
-    -webkit-appearance: none;
-    appearance: none;
-    width: 25px;
-    height: 25px;
-    border-radius: 50%;
-    background: #FBEEC1;
-    cursor: pointer;
+  -webkit-appearance: none;
+  appearance: none;
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  background: #fbeec1;
+  cursor: pointer;
 }
 
 .slider::-moz-range-thumb {
-    width: 25px;
-    height: 25px;
-    border-radius: 50%;
-    background: #FBEEC1;
-    cursor: pointer;
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  background: #fbeec1;
+  cursor: pointer;
 }
-
 
 /* ========================*/
 /* BUTTON */
 /* ========================*/
 
-
-button { 
-    display: inline-block;
-    padding: 10px 20px;
-    font-size: 16px;
-    cursor: pointer;
-    text-align: center;
-    text-decoration: none;
-    outline: none;
-    color: #fff;
-    border: none;
-    border-radius: 10px;
-    box-shadow: 0 9px rgb(236, 217, 217);
+button {
+  display: inline-block;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+  outline: none;
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  box-shadow: 0 9px rgb(236, 217, 217);
 }
 
 button:hover {
-    background-color: #0d330e
+  background-color: #0d330e;
 }
 
 button:active {
-    box-shadow: 0 5px #666;
-    transform: translateY(4px);
+  box-shadow: 0 5px #666;
+  transform: translateY(4px);
 }
 
-#startStopButton{
-    background-color: #3a993d;
+#startStopButton {
+  background-color: #3a993d;
 }
-#startStopButton:hover{
-    background-color: #0d330e;
+#startStopButton:hover {
+  background-color: #0d330e;
 }
 
-#startStopButton:active{
-    background-color: #0d330e;
+#startStopButton:active {
+  background-color: #0d330e;
 }
 
 #resetButton {
-    background-color: #a70505;
+  background-color: #a70505;
 }
 
 #resetButton:hover {
-    background-color: #6d0404;
+  background-color: #6d0404;
 }
 
 #resetButton:active {
-    background-color: #6d0404;
+  background-color: #6d0404;
 }
 
-.red-border{
-    margin: 1rem 0px;
-    border: 1px dotted #a70505;
+#closeButton {
+  background-color: #eba50e;
+}
+
+#closeButton:hover {
+  background-color: rgb(221, 154, 9);
+}
+
+#closeButton:active {
+  background-color: rgb(221, 154, 9);
+}
+
+.red-border {
+  margin: 1rem 0px;
+  border: 1px dotted #a70505;
 }
 
 /* ========================*/
 /* CHART */
 /* ========================*/
 
-.chart-container{
-   text-align: center;
-   width:100%;
+
+.chart-container {
+  text-align: center;
+  width: 100%;
 }
 
-.base-sim-container{
-    display:flex;
+.base-sim-container {
+  display: flex;
 }
 
-.updatedAtNewSim{
-    margin-top: 2rem;
-    border-width: 2px;
-    width: 25rem;
-    position: relative;
+.updatedAtNewSim {
+  margin-top: 2rem;
+  border-width: 2px;
+  width: 25rem;
+  position: relative;
 }
 
 .updatedDynamically {
-    position: relative;
-    display:block;
-    text-align: center;
-    margin-top: 5rem;
+  position: relative;
+  display: block;
+  text-align: center;
+  margin-top: 5rem;
 }
 
-.col-1-of-2{
-    width:50%;
-    float:left;
+.col-1-of-2 {
+  width: 50%;
+  float: left;
 }
 
-.col-2-of-2{
-    width:50%;
-    float:right;
+.col-2-of-2 {
+  width: 50%;
+  float: right;
 }
 
-
-.parameter-text{
-    text-align: center;
+.parameter-text {
+  text-align: center;
 }
 
-.parameter-container{
-    display: block;
-    position: relative;
-    border: 1px solid #ccc;
-    padding:1rem;
+.parameter-container {
+  display: block;
+  position: relative;
+  border: 1px solid #ccc;
+  padding: 0.5rem;
+  text-align: center;
 }
-.paperPerDay, .petajouleEnergyPerDay, .farmHectaresPerDay {
-    display: inline-block;
-    margin-left: 1rem;
-    width: 250px;
-    text-align: center;
+.paperPerDay,
+.petajouleEnergyPerDay,
+.farmHectaresPerDay,
+.treeRegrowPerDay {
+  display: inline-block;
+  margin-left: 1rem;
+  width: 250px;
+  text-align: center;
 }

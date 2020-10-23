@@ -21,7 +21,7 @@
 
 <body onload="loadScript();">
     <h2 style="font-size: 40px;">Latvia's deforestation simulation!</h2>
-    <h3>Developed within Ventspils IT challenge 2020</h3>
+    <h3>Developed within <a href="http://ventspilsitc.com" target="_blank">Ventspils IT challenge</a> 2020</h3>
     <div class="base-sim-container">
         <div class="chart-container" style="height:60vh; width: 100vh;">
             <canvas id="chart" class="chart">
@@ -32,12 +32,12 @@
             <div class="updatedAtNewSim">
                 <div class="col-1-of-2">
                     <div class="radius" style="margin-left: 1rem; margin-top: 2rem;">
-                        <h3>Forest radius (km)</h3>
-                        <input type="range" min="2" max="200" value="20" class="slider" id="forestRadius">
+                        <h3>Forest radius <br>(KM)</h3>
+                        <input type="range" min="2" max="100" value="20" class="slider" id="forestRadius">
                         <p class="sliderValue" id="forestRadiusValue">VALUE: 20 (KM)</p>
                     </div>
                     <div class="treesPerSquareMeter" style="margin-left: 1rem;">
-                        <h3>Trees per square meter (N)</h3>
+                        <h3>Trees per square meter <br>(N/M&sup2;)</h3>
                         <input type="range" min="0" max="150" value="50" class="slider" id="treesPerSquareMeter">
                         <p class="sliderValue" id="treesPerSquareMeterValue">VALUE: 0.5 (N/M^2)</p>
                     </div>
@@ -62,26 +62,34 @@
     </div>
     <div class="parameter-container">
         <div class="paperPerDay">
-            <h3>PAPER TONS PER DAY (N/DAY)</h3>
+            <h3>PAPER TONS PER DAY <br>(N/DAY)</h3>
             <div class="slider" id="slider-range-paperPerDay" style="margin-top:5px;"></div>
             <input class="sliderValue range-slider-text-format" readonly id="amount-paperPerDay"></p>
         </div>
         <div class="petajouleEnergyPerDay">
-            <h3>ENERGY PER DAY (J/DAY)</h3>
+            <h3>ENERGY PER DAY <br>(J/DAY)</h3>
             <div class="slider" id="slider-range-petajouleEnergyPerDay" style="margin-top:5px;"></div>
             <input class="sliderValue range-slider-text-format" readonly id="amount-petajouleEnergyPerDay"></p>
         </div>
          <div class="farmHectaresPerDay">
-            <h3>HECTARES PER DAY (H/DAY)</h3>
+            <h3>HECTARES PER DAY <br>(H/DAY)</h3>
             <div class="slider" id="slider-range-woodfarmsPerDay" style="margin-top:5px;"></div>
             <input class="sliderValue range-slider-text-format" readonly id="amount-woodfarmsPerDay"></p>
+        </div>
+         <div class="treeRegrowPerDay">
+            <h3>REGROW STUMPS PER DAY (%/DAY)</h3>
+            <div class="slider" id="slider-range-treeRegrowPerDay" style="margin-top:5px;"></div>
+            <input class="sliderValue range-slider-text-format" readonly id="amount-treeRegrowPerDay"></p>
         </div>
     </div>
     <div class="button-container">
         <button style="margin-top: 1rem;" id="startStopButton" onclick="startStopSimulation();">START SIMULATION!</button>
     </div>
     <div class="button-container">
-      <button style="margin-top: 1rem;" id="resetButton" onclick="resetSimulation();">RESET!</button>
+      <button style="margin-top: 1rem;" id="resetButton" onclick="resetSimulation();">RESET SIMULATION!</button>
+    </div>
+     <div class="button-container">
+      <button style="margin-top: 1rem;" id="closeButton" onclick="closePage();">EXIT!</button>
     </div>
 
 </body>
