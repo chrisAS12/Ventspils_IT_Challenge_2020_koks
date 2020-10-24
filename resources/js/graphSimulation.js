@@ -106,6 +106,9 @@ var stumps = 0;
 var spruceStumps = 0;
 var pineStumps = 0;
 var birchStumps = 0;
+var startBirch = 0;
+var startPineTree = 0;
+var startSpruce = 0;
 
 function clearGraph() {
   while (dayArray.length > 0) {
@@ -136,12 +139,15 @@ function newParameters(started) {
   let percentages = getPercentages();
 
   stumps = 0;
+  pineTree = Math.floor(percentages[0] * trees);
+  startPineTree = pineTree;
+  birch = Math.floor(percentages[1] * trees);
+  startBirch = birch;
+  spruce = Math.floor(percentages[2] * trees);
+  startSpruce = spruce;
   pineStumps = 0;
   birchStumps = 0;
   spruceStumps = 0;
-  pineTree = Math.floor(percentages[0] * trees);
-  birch = Math.floor(percentages[1] * trees);
-  spruce = Math.floor(percentages[2] * trees);
   calculateTotalNumberOfTrees();
   oldTreeCount = trees;
   if (started == true) {
@@ -191,7 +197,7 @@ function removeAllTreeTypes(cutDownTrees) {
     spruceStumps += cutDownTrees;
   } else if (birch > 0) {
     birch -= cutDownTrees;
-    birchstumps += cutDownTrees;
+    birchStumps += cutDownTrees;
   } else if (pineTree > 0) {
     pineTree -= cutDownTrees;
     pineStumps += cutDownTrees;
@@ -211,6 +217,27 @@ function noNegativesCheck() {
   }
   if (stumps < 0) {
     stumps = 0;
+  }
+}
+
+function checkIfStumpsMoreThanStartedWith() {
+  if (birchStumps > startBirch) {
+    birchStumps = startBirch;
+    console.log("dasd" + birchStumps + " " + startBirch);
+  } else if (birchStumps < 0) {
+    birchStumps = 0;
+  }
+  if (pineStumps > startPineTree) {
+    pineStumps = startPineTree;
+    console.log(pineStumps + " " + pineStumps);
+  } else if (pineStumps < 0) {
+    pineStumps = 0;
+  }
+  if (spruceStumps > startSpruce) {
+    spruceStumps = startSpruce;
+    console.log(birchStumps + " " + startBirch);
+  } else if (spruceStumps < 0) {
+    spruceStumps = 0;
   }
 }
 
@@ -267,7 +294,6 @@ function woodfarmCalculation() {
   removeAllTreeTypes(woodfarmTreesPerDay);
 }
 
-
 let oldTreeCount = trees;
 // Tracking total number of trees removed.
 function treesToStumps() {
@@ -278,24 +304,24 @@ function treesToStumps() {
   oldTreeCount = trees;
 }
 
-function regrowTrees(){
-  for(i = 0; i < 3; i++){
-    percentToRegrow = Math.random() * (maxTreeRegrowPerDay - minTreeRegrowPerDay) +
+function regrowTrees() {
+  checkIfStumpsMoreThanStartedWith();
+  percentToRegrow =
+    Math.random() * (maxTreeRegrowPerDay - minTreeRegrowPerDay) +
     minTreeRegrowPerDay;
-    console.log(percentToRegrow);
-    if(i == 0){
-      birch += Math.round(Math.abs(percentToRegrow*birchStumps));
-      birchStumps -= Math.round(Math.abs(percentToRegrow*birchStumps));
-    }
-    else if(i == 1){
-       pineTree += Math.round(Math.abs(percentToRegrow*pineStumps));
-       pineStumps -= Math.round(Math.abs(percentToRegrow*pineStumps));
-    }
-    else if(i == 2){
-      spruce += Math.round(Math.abs(percentToRegrow*spruceStumps));
-      spruceStumps -= Math.round(Math.abs(percentToRegrow*spruceStumps));
-    }
-  }
+  percentToRegrowArray = chanceDivision(percentToRegrow, 3);
+
+  regrowBirch = Math.round(Math.abs(percentToRegrowArray[0] * birchStumps));
+  birch += regrowBirch;
+  birchStumps -= regrowBirch;
+
+  regrowPine = Math.round(Math.abs(percentToRegrowArray[1] * pineStumps));
+  pineTree += regrowPine;
+  pineStumps -= regrowPine;
+
+  regrowSpruce = Math.round(Math.abs(percentToRegrowArray[2] * spruceStumps));
+  spruce += regrowSpruce;
+  spruceStumps -= regrowSpruce;
 }
 
 function simulateADay() {
@@ -310,7 +336,6 @@ function simulateADay() {
   treesToStumps();
   regrowTrees();
   addOneLabel();
-  //  window.close();
 }
 
 // Divides how many of each of kind of tree gets cut down in the certain type
@@ -324,7 +349,7 @@ function chanceDivision(maxNumber, count) {
     currentSum += division[i];
   }
   for (var i = 0; i < division.length; i++) {
-    division[i] = Math.round((division[i] / currentSum) * maxNumber);
+    division[i] = (division[i] / currentSum) * maxNumber;
   }
   return division;
 }
