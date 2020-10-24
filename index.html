@@ -20,7 +20,7 @@
 </head>
 
 <body onload="loadScript();">
-    <h2 style="font-size: 40px;">Latvia's deforestation simulation!</h2>
+    <h2 style="font-size: 50px;">Latvia's deforestation simulation!</h2>
     <h3>Developed within <a href="http://ventspilsitc.com" target="_blank">Ventspils IT challenge</a> 2020</h3>
     <div class="base-sim-container">
         <div class="chart-container" style="height:60vh; width: 100vh;">
@@ -91,7 +91,60 @@
      <div class="button-container">
       <button style="margin-top: 1rem;" id="closeButton" onclick="closePage();">EXIT!</button>
     </div>
-
+    <div>
+        <ul>
+            <li>
+                <h2 style="font-size: 40px;">Team information</h2>
+                <h4>Team name: <u>"koks"</u></h4>
+                <h4>Mentor: <u>Indra Kažoka</u></h4>
+                <h4>Team leader: <u>Krišjānis Mārtiņš Alliks</u></h4>
+                <h4>Team member: <u>Kristaps Olehno</u></h4>
+                <h4>Team member: <u>Alvis Miglavs</u></h4>
+            </li>
+            <li>
+                 <h2 style="font-size: 40px;">Why this project?</h2>
+                  <h4>Earth currently is experiencing massive deforestation. 
+                  It is estimated that 15.3 billion trees are chopped down every year.
+                  Latvia currently isn't experiencing deforestation, but considering the rapidly
+                  changing the world economic situation, it could soon become a major ecological problem in Latvia as well!
+                  This simulation allows you to see how changing certain parameters can affect how trees decrease or increase!
+                  </h4>
+            </li>
+            <li>
+                <h2 style="font-size: 40px;">How do we calculate?</h2>
+                <h4>
+                    The simulation contains in total of 9 parameters, with 13 sliders that you can change. It graphs 3 tree kinds - Birch, Pine, and Spruce. 
+                    White color in the graph birch tree, brown color is the pine tree and the green color is a spruce tree. 
+                    There are 5 parameters, which can only be changed when the simulation is started and these do not change throughout the whole simulation.
+                    The forest is calculated as a circle, so we request "Forest radius" from the user, and with "Trees per square meter" we calculate the number
+                    of trees in the circle. Three parameters - "Spruce tree", "Pine tree", "Birch tree" - allows the user to decide how many trees of each kind 
+                    are in the forest. There are 4 parameters, which the user can change at any time. The four parameters are called - "Paper tons per day", "Energy per day",
+                    "Hectares per day", "Regrow stumps per day" - these parameters can be set either to have or not to have a range of values. "Paper tons per day"
+                    calculate how much paper gets produced in a day. For each ton of paper 24 trees are cut down. The Paper industry uses the 3 kinds of trees, so
+                    we have a function, that randomly decides how much of the total trees that are cut down is each kind. "Energy per day" uses a bit harder calculation,
+                    because we have to calculate how many trees are used for one MWh and we have to divide the petajoules to get MWh. Again, the energy industry uses all kinds
+                    of trees, so we remove randomly from the 3 kinds of trees we have made. "Hectares per day" is a parameter, that simulates farmland, we know that 1 hectare is 10000m&sup2;
+                    so we can just times it by "Trees per square meter" and we know, how many trees we remove for each hectare. "Regrow stumps per day" allows the user to select % of
+                    the trees that get regrown in a day. We regrow the cutdown trees, so the user cannot have more trees at the end than the simulation started with. 
+                    imulation again regrows the three kinds of trees. 
+                </h4>
+            </li>
+            <li>
+                 <h2 style="font-size: 40px;">Resources used</h2>\
+                 <h4>
+                 <a href="http://www.zalajosta.lv/lv/makulaturas-parstrade-latvija-svariga-ikviena-iniciativa-ieskats-makulaturas-parstrades-nozare">www.zalajosta.lv<br></a>
+                 <a href="https://uzladets.lv/fakti-par-kokiem/">uzladets.lv<br></a>
+                 <a href="https://lvportals.lv/norises/279788-par-koksnes-energoresursu-lietderigaku-izmantosanu-majsaimniecibas-2016">lvportals.lv<br></a>
+                 <a href="https://www.linkedin.com/pulse/production-wood-chips-luciano-r-oliveira">www.linkedin.com<br></a>
+                 <a href="http://www.silava.lv/userfiles/file/2017_Erasmus_rokasgramata/2017_07_Erasmus_manual_39.pdf">www.silava.lv<br></a>
+                 <a href="https://www.konvertet-vienibas.info/konvertet+Megavatstunda+uz+Petadzouls.php">www.konvertet-vienibas.info<br></a>
+                 <a href="https://www.lvm.lv/jaunumi/4919-latvija-ir-atjaunojamas-energijas-izmantosanas-lidere">www.lvm.lv<br></a>
+                 <a href="https://bugwoodcloud.org/bugwood/productivity/pdfs/Jx_WOODLAND_MANAGEMENT_Trees_per_Acre_Spacing_Dist_CODER_2017.pdf">bugwoodcloud.org<br></a>
+                 <a href="https://news.mongabay.com/2015/09/how-many-trees-are-cut-down-every-year/#:~:text=A%20new%20study%20published%20in,over%20the%20past%2012%2C000%20years.">news.mongabay.com<br></a>
+                </h4>
+            </li>
+        </ul>
+    </div>
 </body>
 
 <!--EXTERNAL SCRIPT LINKS-->

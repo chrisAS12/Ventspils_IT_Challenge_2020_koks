@@ -55,6 +55,10 @@ h2 {
 h3 {
   text-align: center;
 }
+h4 {
+  margin-bottom: 5px;
+  text-align: center;
+}
 
 /* ========================*/
 /* SLIDER */
@@ -233,4 +237,17 @@ button:active {
   margin-left: 1rem;
   width: 250px;
   text-align: center;
+}
+
+
+
+/* ========================*/
+/* LIST */
+/* ========================*/
+
+ul {
+  margin-top: 4rem;
+}
+li {
+  margin-top: 2rem;
 }
