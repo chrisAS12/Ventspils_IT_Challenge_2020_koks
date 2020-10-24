@@ -223,19 +223,16 @@ function noNegativesCheck() {
 function checkIfStumpsMoreThanStartedWith() {
   if (birchStumps > startBirch) {
     birchStumps = startBirch;
-    console.log("dasd" + birchStumps + " " + startBirch);
   } else if (birchStumps < 0) {
     birchStumps = 0;
   }
   if (pineStumps > startPineTree) {
     pineStumps = startPineTree;
-    console.log(pineStumps + " " + pineStumps);
   } else if (pineStumps < 0) {
     pineStumps = 0;
   }
   if (spruceStumps > startSpruce) {
     spruceStumps = startSpruce;
-    console.log(birchStumps + " " + startBirch);
   } else if (spruceStumps < 0) {
     spruceStumps = 0;
   }
