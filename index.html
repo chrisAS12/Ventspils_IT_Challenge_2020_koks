@@ -20,6 +20,9 @@
 </head>
 
 <body onload="loadScript();">
+    <div class="progress-container">
+        <div class="progress-bar" id="myBar"></div>
+    </div>
     <h2 style="font-size: 50px;">Latvia's deforestation simulation!</h2>
     <h3>Developed within <a href="http://ventspilsitc.com" target="_blank">Ventspils IT challenge</a> 2020</h3>
     <div class="base-sim-container">
@@ -114,7 +117,7 @@
                 <h2 style="font-size: 40px;">How do we calculate?</h2>
                 <h4>
                     The simulation contains in total of 9 parameters, with 13 sliders that you can change.
-                    It graphs 3 kinds of trees - Birch, Pine, and Spruce. The white color in the graph is a birch tree, the brown color is the pine tree and the green color is a spruce tree.
+                    It graphs 3 kinds of trees - Birch, Pine, and Spruce. The white colour in the graph is a birch tree, the brown colour is the pine tree and the green colour is a spruce tree.
                     There are 5 parameters, which can only be changed when the simulation is started and these do not change throughout the whole simulation.
                     The forest is calculated as a circle, so we request "Forest radius" from the user, and with "Trees per square meter" we calculate the number of trees in the circle. 
                     Three parameters - "Spruce tree", "Pine tree", "Birch tree" - allows the user to decide how many trees of each kind are in the forest. 
@@ -129,7 +132,7 @@
                 </h4>
             </li>
             <li>
-                 <h2 style="font-size: 40px;">Resources used:</h2>\
+                 <h2 style="font-size: 40px;">Resources used:</h2>
                  <h4>
                  <a href="http://www.zalajosta.lv/lv/makulaturas-parstrade-latvija-svariga-ikviena-iniciativa-ieskats-makulaturas-parstrades-nozare">www.zalajosta.lv<br></a>
                  <a href="https://uzladets.lv/fakti-par-kokiem/">uzladets.lv<br></a>
@@ -150,5 +153,6 @@
 <script type="text/javascript" src="resources/js/graphSimulation.js"></script>
 <script type="text/javascript" src="resources/js/uiScript.js"></script>
 <script type="text/javascript" src="resources/js/doubleValueSlider.js"></script>
+<script type="text/javascript" src="resources/js/scrollScript.js"></script>
 
 </html>
