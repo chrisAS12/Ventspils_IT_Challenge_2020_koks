@@ -58,6 +58,7 @@ h3 {
 h4 {
   margin-bottom: 5px;
   text-align: center;
+  font-size: 24px;
 }
 
 /* ========================*/
@@ -76,7 +77,7 @@ h4 {
 
 .progress-bar {
   height: 8px;
-  background: #4caf50;
+  background: #3a993d;
   width: 0%;
 }
 
@@ -137,7 +138,39 @@ h4 {
 /* BUTTON */
 /* ========================*/
 
-button {
+button:hover {
+  background-color: #0d330e;
+}
+
+button:active {
+  box-shadow: 0 5px #666;
+  transform: translateY(4px);
+}
+
+#startStopButton {
+  background-color: #3a993d;
+  display: inline-block;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+  outline: none;
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  box-shadow: 0 9px rgb(236, 217, 217);
+}
+#startStopButton:hover {
+  background-color: #0d330e;
+}
+
+#startStopButton:active {
+  background-color: #0d330e;
+}
+
+#resetButton {
+  background-color: #a70505;
   display: inline-block;
   padding: 10px 20px;
   font-size: 16px;
@@ -151,30 +184,6 @@ button {
   box-shadow: 0 9px rgb(236, 217, 217);
 }
 
-button:hover {
-  background-color: #0d330e;
-}
-
-button:active {
-  box-shadow: 0 5px #666;
-  transform: translateY(4px);
-}
-
-#startStopButton {
-  background-color: #3a993d;
-}
-#startStopButton:hover {
-  background-color: #0d330e;
-}
-
-#startStopButton:active {
-  background-color: #0d330e;
-}
-
-#resetButton {
-  background-color: #a70505;
-}
-
 #resetButton:hover {
   background-color: #6d0404;
 }
@@ -185,6 +194,17 @@ button:active {
 
 #closeButton {
   background-color: #eba50e;
+  display: inline-block;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+  outline: none;
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  box-shadow: 0 9px rgb(236, 217, 217);
 }
 
 #closeButton:hover {
@@ -267,7 +287,59 @@ button:active {
 
 ul {
   margin-top: 4rem;
+  margin-bottom: 2rem;
 }
-li {
-  margin-top: 2rem;
+
+/* ========================*/
+/* IMAGE */
+/* ========================*/
+
+.centerImage {
+	display:block;
+	margin: 0 auto;
+}
+
+/* ========================*/
+/* ACCORDION/COLLAPSE */
+/* ========================*/
+
+.accordion {
+  background-color: #74491e7a;
+  color: #fbeec1;
+  cursor: pointer;
+  padding: 18px;
+  width: 100%;
+  text-align: left;
+  border-style: none none solid none;
+  outline: none;
+  transition: 0.4s;
+}
+
+#upperAccordion {
+  border-style: solid none solid none;
+}
+
+.active, .accordion:hover {
+  background-color: #4B2D0B;
+}
+
+.panel {
+  padding: 0 18px;
+  background-color: #7f5a379c;
+  overflow: hidden;
+  max-height: 0;
+  transition: max-height 0.5s ease-out;
+}
+
+.accordion:after {
+  content: '\2B9C'; 
+  font-size: 18px;
+  color: #fbeec1;
+  float: right;
+  margin-left: 10px;
+}
+
+.active:after {
+  content: "\2B9F"; 
+  color: #fbeec1;
 }
